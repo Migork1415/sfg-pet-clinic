@@ -6,13 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/owners")
 @RequiredArgsConstructor
-public class IndexController {
+public class OwnerController {
 
 	@GetMapping
-	public String index() {
-		return "index";
+	public String listOnwers(){
+		return "owners/index";
 	}
 
 }
