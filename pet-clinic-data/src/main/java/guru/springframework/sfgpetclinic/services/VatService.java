@@ -1,15 +1,8 @@
 package guru.springframework.sfgpetclinic.services;
 
 import guru.springframework.sfgpetclinic.model.Vat;
+import org.springframework.data.repository.CrudRepository;
 
-import java.util.Set;
-
-public interface VatService {
-
-	Vat findById( Long id );
-
-	Vat save( Vat vat );
-
-	Set<Vat> findAll();
+public interface VatService extends CrudRepository<Vat, Long> {
 
 }
