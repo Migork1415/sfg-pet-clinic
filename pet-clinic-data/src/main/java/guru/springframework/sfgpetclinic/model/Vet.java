@@ -3,6 +3,6 @@ package guru.springframework.sfgpetclinic.model;
 import lombok.Data;
 
 @Data
-public class Vat extends Person {
+public class Vet extends Person {
 
 }
