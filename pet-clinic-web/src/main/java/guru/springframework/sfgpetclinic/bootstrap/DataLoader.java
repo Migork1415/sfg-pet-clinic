@@ -4,24 +4,19 @@ import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.VetService;
-import guru.springframework.sfgpetclinic.services.map.OwnerServiceMap;
-import guru.springframework.sfgpetclinic.services.map.VetServiceMap;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
 	private final OwnerService ownerService;
 
 	private final VetService vetService;
-
-	public DataLoader() {
-		this.ownerService = new OwnerServiceMap();
-		this.vetService = new VetServiceMap();
-	}
 
 	@Override
 	public void run( String... args ) throws Exception {
