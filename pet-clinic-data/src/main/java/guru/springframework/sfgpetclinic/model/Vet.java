@@ -1,14 +1,28 @@
 package guru.springframework.sfgpetclinic.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode( callSuper = true )
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Vet extends Person {
 
+	@Setter( AccessLevel.PRIVATE )
 	private Set<Specialty> specialties;
 
+	public void addSpecialty( Specialty specialty ) {
+
+		if ( specialties == null ) {
+			specialties = new HashSet<>();
+		}
+
+		if ( specialty != null ) {
+			specialties.add( specialty );
+		}
+
+	}
 }

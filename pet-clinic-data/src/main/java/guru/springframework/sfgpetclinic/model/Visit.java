@@ -1,16 +1,16 @@
 package guru.springframework.sfgpetclinic.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Data
-@NoArgsConstructor
+@Setter
+@Getter
 @AllArgsConstructor
-@EqualsAndHashCode( callSuper = true )
+@NoArgsConstructor
 public class Visit extends BaseEntity {
 
 	private LocalDate date;

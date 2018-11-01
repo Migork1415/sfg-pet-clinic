@@ -1,14 +1,14 @@
 package guru.springframework.sfgpetclinic.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode( callSuper = true )
 public class Owner extends Person {
 
 	private String address;
@@ -17,6 +17,18 @@ public class Owner extends Person {
 
 	private String telephone;
 
+	@Setter( AccessLevel.PRIVATE )
 	private Set<Pet> pets;
 
+	public void addPet( Pet pet ) {
+
+		if ( pets == null ) {
+			pets = new HashSet<>();
+		}
+
+		if ( pet != null ) {
+			pets.add( pet );
+		}
+
+	}
 }
