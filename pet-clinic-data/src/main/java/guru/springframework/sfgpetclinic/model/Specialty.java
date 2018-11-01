@@ -3,12 +3,10 @@ package guru.springframework.sfgpetclinic.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.Set;
-
 @Data
 @EqualsAndHashCode( callSuper = true )
-public class Vet extends Person {
+public class Specialty extends BaseEntity {
 
-	private Set<Specialty> specialties;
+	private String description;
 
 }
