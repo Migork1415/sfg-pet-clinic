@@ -1,11 +1,9 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
-import guru.springframework.sfgpetclinic.model.Owner;
-import guru.springframework.sfgpetclinic.model.Pet;
-import guru.springframework.sfgpetclinic.model.PetType;
-import guru.springframework.sfgpetclinic.model.Vet;
+import guru.springframework.sfgpetclinic.model.*;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
+import guru.springframework.sfgpetclinic.services.SpecialtyService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,18 +23,24 @@ public class DataLoader implements CommandLineRunner {
 
 	private final PetTypeService petTypeService;
 
+	private final SpecialtyService specialtyService;
+
 	@Override
-	public void run( String... args ) throws Exception {
+	public void run( String... args ) {
+
+		int count = petTypeService.findAll().size();
+
+		if ( count == 0 ) {
+			loadData();
+		}
+	}
+
+	private void loadData() {
 		///////////////////
 		// PET TYPES
 		///////////////////
-		PetType dog = new PetType();
-		dog.setName( "Dog" );
-		PetType savedDogPetType = petTypeService.save( dog );
-
-		PetType cat = new PetType();
-		cat.setName( "Cat" );
-		PetType savedCatPetType = petTypeService.save( cat );
+		PetType dog = petTypeService.save( new PetType( "Dog" ) );
+		PetType cat = petTypeService.save( new PetType( "Cat" ) );
 
 		log.info( "Loaded Pet types..." );
 
@@ -51,7 +55,7 @@ public class DataLoader implements CommandLineRunner {
 		owner1.setTelephone( "917081212" );
 
 		Pet mikesPet = new Pet();
-		mikesPet.setPetType( savedDogPetType );
+		mikesPet.setPetType( dog );
 		mikesPet.setOwner( owner1 );
 		mikesPet.setBirthDay( LocalDate.of( 2010, 01, 05 ) );
 		mikesPet.setName( "Rosco" );
@@ -65,7 +69,7 @@ public class DataLoader implements CommandLineRunner {
 		owner2.setTelephone( "917081212" );
 
 		Pet fionaPet = new Pet();
-		fionaPet.setPetType( savedCatPetType );
+		fionaPet.setPetType( cat );
 		fionaPet.setOwner( owner1 );
 		fionaPet.setBirthDay( LocalDate.of( 2011, 02, 12 ) );
 		fionaPet.setName( "Mia" );
@@ -77,15 +81,27 @@ public class DataLoader implements CommandLineRunner {
 		log.info( "Loaded Owners..." );
 
 		///////////////////
+		// SPECIALTIES
+		///////////////////
+		Specialty radiology = specialtyService.save( new Specialty( "radiology" ) );
+		Specialty surgery = specialtyService.save( new Specialty( "surgery" ) );
+		Specialty dentistry = specialtyService.save( new Specialty( "dentistry" ) );
+
+		log.info( "Loaded Specialties..." );
+
+		///////////////////
 		// VETS
 		///////////////////
 		Vet vet1 = new Vet();
 		vet1.setFirstName( "Sam" );
 		vet1.setLastName( "Axe" );
+		vet1.addSpecialty( surgery );
 
 		Vet vet2 = new Vet();
 		vet2.setFirstName( "Jessie" );
 		vet2.setLastName( "Porter" );
+		vet2.addSpecialty( radiology );
+		vet2.addSpecialty( dentistry );
 
 		vetService.save( vet1 );
 		vetService.save( vet2 );
