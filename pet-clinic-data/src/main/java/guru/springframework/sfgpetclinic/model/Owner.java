@@ -25,7 +25,7 @@ public class Owner extends Person {
 
 	@OneToMany( cascade = CascadeType.ALL, mappedBy = "owner" )
 	@Setter( AccessLevel.PRIVATE )
-	private Set<Pet> pets;
+	private Set<Pet> pets = new HashSet<>();
 
 	public void addPet( Pet pet ) {
 
