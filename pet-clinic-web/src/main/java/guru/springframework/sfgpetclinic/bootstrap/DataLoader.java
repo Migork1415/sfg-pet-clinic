@@ -1,10 +1,7 @@
 package guru.springframework.sfgpetclinic.bootstrap;
 
 import guru.springframework.sfgpetclinic.model.*;
-import guru.springframework.sfgpetclinic.services.OwnerService;
-import guru.springframework.sfgpetclinic.services.PetTypeService;
-import guru.springframework.sfgpetclinic.services.SpecialtyService;
-import guru.springframework.sfgpetclinic.services.VetService;
+import guru.springframework.sfgpetclinic.services.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -25,6 +22,8 @@ public class DataLoader implements CommandLineRunner {
 
 	private final SpecialtyService specialtyService;
 
+	private final VisitService visitService;
+
 	@Override
 	public void run( String... args ) {
 
@@ -44,9 +43,9 @@ public class DataLoader implements CommandLineRunner {
 
 		log.info( "Loaded Pet types..." );
 
-		///////////////////
+		/////////////////////
 		// OWNERS && PETS
-		///////////////////
+		//////////////////////
 		Owner owner1 = new Owner();
 		owner1.setFirstName( "Michael" );
 		owner1.setLastName( "Weston" );
@@ -107,5 +106,15 @@ public class DataLoader implements CommandLineRunner {
 		vetService.save( vet2 );
 
 		log.info( "Loaded Vets..." );
+
+		///////////////////
+		// VISITS
+		///////////////////
+
+		Visit visit = new Visit( LocalDate.now(), "Vaccines", fionaPet );
+		visitService.save( visit );
+
+		log.info( "Loaded Visits..." );
+
 	}
 }
