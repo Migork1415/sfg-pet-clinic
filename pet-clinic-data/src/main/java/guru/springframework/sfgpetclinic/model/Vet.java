@@ -18,11 +18,11 @@ public class Vet extends Person {
 	@ManyToMany( fetch = FetchType.EAGER )
 	@JoinTable( name = "vet_specialties",
 		joinColumns = @JoinColumn(name = "vet_id"),
-		inverseJoinColumns = @JoinColumn(name = "speciality_id")
+		inverseJoinColumns = @JoinColumn(name = "specialty_id")
 	)
-	private Set<Speciality> specialties = new HashSet<>();
+	private Set<Specialty> specialties = new HashSet<>();
 
-	public void addSpecialty( Speciality specialty ) {
+	public void addSpecialty( Specialty specialty ) {
 
 		if ( specialties == null ) {
 			specialties = new HashSet<>();
