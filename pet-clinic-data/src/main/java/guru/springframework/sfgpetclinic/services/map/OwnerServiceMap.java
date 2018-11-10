@@ -12,9 +12,9 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.Set;
 
-@RequiredArgsConstructor
-@Profile( { "map", "default" } )
 @Service
+@Profile( { "map", "default" } )
+@RequiredArgsConstructor
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
 	private final PetTypeService petTypeService;
