@@ -1,9 +1,6 @@
 package guru.springframework.sfgpetclinic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -34,6 +31,16 @@ public class Pet extends BaseEntity {
 
 	@OneToMany( cascade = CascadeType.ALL, mappedBy = "pet")
 	private Set<Visit> visits = new HashSet<>();
+
+	@Builder
+	public Pet( Long id, String name, PetType petType, Owner owner, LocalDate birthDay, Set<Visit> visits ) {
+		super( id );
+		this.name = name;
+		this.petType = petType;
+		this.owner = owner;
+		this.birthDay = birthDay;
+		this.visits = visits;
+	}
 
 	public void assignPetType( PetType petType ) {
 		this.petType = petType;

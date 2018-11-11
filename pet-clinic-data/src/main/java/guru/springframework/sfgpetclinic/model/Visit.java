@@ -1,9 +1,6 @@
 package guru.springframework.sfgpetclinic.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,4 +23,11 @@ public class Visit extends BaseEntity {
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 
+	@Builder
+	public Visit( Long id, LocalDate date, String description, Pet pet ) {
+		super( id );
+		this.date = date;
+		this.description = description;
+		this.pet = pet;
+	}
 }

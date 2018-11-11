@@ -22,6 +22,12 @@ public class Vet extends Person {
 	)
 	private Set<Specialty> specialties = new HashSet<>();
 
+	@Builder
+	public Vet( Long id, String firstName, String lastName, Set<Specialty> specialties ) {
+		super( id, firstName, lastName );
+		this.specialties = specialties;
+	}
+
 	public void addSpecialty( Specialty specialty ) {
 
 		if ( specialties == null ) {
